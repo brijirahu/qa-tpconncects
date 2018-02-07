@@ -58,6 +58,16 @@ public class adminLoginPageTest extends initTest  {
             adminLoginPage.verifyInvalidLoginErrorMsg(username,password);
     }
 
+    @Test
+    public void verifyvalidLogin(){
+        prop = new Properties(commonMethods.getTestData());
+
+        //prop = commonMethods.getTestData();
+        String username = prop.getProperty("validUser");
+        String password = prop.getProperty("validPass");
+        adminLoginPage.verifyInvalidLoginErrorMsg(username,password);
+    }
+
     @AfterClass
     public void closeDriver(){
        quitDriver();
