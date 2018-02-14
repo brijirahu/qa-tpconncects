@@ -1,0 +1,22 @@
+
+# maven target folders
+# This is a comment
+# Ignore target at the top level
+/target/
+# Ignore child project's targets as well
+/*/target/
+# And any grandchildren ...
+/*/*/target/
+# Or you can do:
+target/
+# which matches 'target' in any sub folder
+.class
+*.iml 
+
+
+#IDE files
+.idea/
+*.iml
+.project
+16-21
+.allure

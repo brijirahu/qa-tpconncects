@@ -1,23 +1,25 @@
 package core.admin.tests;
 
-import core.admin.utility.ScreenshotListener;
+import core.admin.utility.Listeners.TestListeners;
 import core.admin.utility.commonMethods;
 import core.admin.pages.adminLoginPage;
-
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.*;
-
 import java.util.Properties;
 import org.apache.log4j.Logger;
 
 
-@Listeners(ScreenshotListener.class)
+@Listeners({ TestListeners.class })
+@Epic("Core Tests")
+@Feature("Admin login tests")
 public class adminLoginPageTest extends initTest  {
 
 
     String url = "http://admin.tpconnects.net";
-    adminLoginPage adminLoginPage;
+    public adminLoginPage adminLoginPage;
 
     public final Logger logger = Logger.getLogger("logger");
     commonMethods commonMethods = new commonMethods();
@@ -34,7 +36,8 @@ public class adminLoginPageTest extends initTest  {
 
     }
 
-    @Test
+    @Step("Verify admin login page url step..")
+    @Test(description = "Verify login page url")
     public void verifyLoginPageUrl(){
         logger.info("****Login page****");
 
@@ -65,10 +68,10 @@ public class adminLoginPageTest extends initTest  {
         //prop = commonMethods.getTestData();
         String username = prop.getProperty("validUser");
         String password = prop.getProperty("validPass");
-        adminLoginPage.verifyInvalidLoginErrorMsg(username,password);
+        adminLoginPage.verifyvalidLogin(username,password);
     }
 
-    @AfterClass
+    @AfterSuite
     public void closeDriver(){
        quitDriver();
 

@@ -12,7 +12,7 @@ public class commonMethods {
     public Properties getTestData(){
 
         FileInputStream inputStream = null;
-        File fileName = new File("E:\\AutomationWorkspace\\coreB2B\\src\\test\\java\\testdata.properties");
+        File fileName = new File("E:\\AutomationWorkspace\\coreB2B\\src\\test\\testdata.properties");
         Properties prop = new Properties();
         String workDir = System.getProperty("user.dir");
 

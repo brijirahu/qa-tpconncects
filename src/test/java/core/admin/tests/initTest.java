@@ -1,5 +1,7 @@
 package core.admin.tests;
 
+//import io.qameta.allure.Step;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,7 +11,10 @@ import java.util.concurrent.TimeUnit;
 public class initTest {
 
      public static WebDriver driver;
+
+     public static final String testDataExcelFileName = "TestData.xlsx";
     //String url = "http://admin.tpconnects.net";
+
 
     public void initDriver(String browser){
 
@@ -32,10 +37,10 @@ public class initTest {
         return this.driver;
     }
 
+    @Step("Open url step ...")
     public void openUrl(String url){
         getDriver().get(url);
         getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
     }
 
     public void quitDriver(){

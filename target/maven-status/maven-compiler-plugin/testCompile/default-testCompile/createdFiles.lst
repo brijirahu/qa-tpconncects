@@ -1,5 +1,0 @@
-core\admin\tests\initTest.class
-core\admin\utility\commonMethods.class
-core\admin\tests\adminLoginPageTest.class
-core\admin\utility\ScreenshotListener.class
-core\admin\pages\adminLoginPage.class

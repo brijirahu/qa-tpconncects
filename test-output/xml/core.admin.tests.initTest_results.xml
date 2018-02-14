@@ -6,12 +6,12 @@
            skipped="0"
            time="0.000">
   <properties />
-            <testcase name="quitDriver" time="0.000" classname="core.admin.tests.initTest">
+            <testcase name="quitDriver" time="0.000" classname="initTest">
                 <failure type="java.lang.NullPointerException"
                   message="(null)"
               >
 <![CDATA[java.lang.NullPointerException
-  core.admin.tests.initTest.quitDriver(initTest.java:38)
+  initTest.quitDriver(initTest.java:38)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

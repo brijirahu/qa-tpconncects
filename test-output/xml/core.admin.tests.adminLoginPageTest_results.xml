@@ -6,12 +6,12 @@
            skipped="0"
            time="0.136">
   <properties />
-            <testcase name="verifyErrorMsgForInvalidLogin" time="0.001" classname="core.admin.tests.adminLoginPageTest">
+            <testcase name="verifyErrorMsgForInvalidLogin" time="0.001" classname="adminLoginPageTest">
                 <failure type="java.lang.NullPointerException"
                   message="(null)"
               >
 <![CDATA[java.lang.NullPointerException
-  core.admin.tests.adminLoginPageTest.verifyErrorMsgForInvalidLogin(adminLoginPageTest.java:48)
+  adminLoginPageTest.verifyErrorMsgForInvalidLogin(adminLoginPageTest.java:48)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -40,7 +40,7 @@
       </failure>
 
           </testcase>
-            <testcase name="verifyLoginPageUrl" time="0.008" classname="core.admin.tests.adminLoginPageTest">
+            <testcase name="verifyLoginPageUrl" time="0.008" classname="adminLoginPageTest">
                 <failure type="java.lang.AssertionError"
                   message="Page title is not as expected expected [true] but found [false]"
               >
@@ -48,7 +48,7 @@
   org.testng.Assert.fail(Assert.java:94)
   org.testng.Assert.failNotEquals(Assert.java:513)
   org.testng.Assert.assertTrue(Assert.java:42)
-  core.admin.tests.adminLoginPageTest.verifyLoginPageUrl(adminLoginPageTest.java:36)
+  adminLoginPageTest.verifyLoginPageUrl(adminLoginPageTest.java:36)
   sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -79,6 +79,6 @@
           </testcase>
   
   
-            <testcase name="verifyLoginPageElementsDisplayed" time="0.127" classname="core.admin.tests.adminLoginPageTest" />
+            <testcase name="verifyLoginPageElementsDisplayed" time="0.127" classname="adminLoginPageTest" />
       
 </testsuite>

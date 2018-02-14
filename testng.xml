@@ -2,12 +2,13 @@
 <suite name="tpconnects">
 
     <listeners>
-        <listener class-name="core.admin.utility.ScreenshotListener" />
+        <!--<listener class-name="ScreenshotListener" />-->
+        <listener class-name="core.admin.utility.Listeners.TestListeners" />
         <!--<listener class-name="org.uncommons.reportng.HTMLReporter"/>-->
         <!--<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>-->
     </listeners>
 
-    <test name="adminTest_FF">
+    <test name="adminTest_FF" preserve-order="true">
         <parameter name="browser" value="Firefox"/>
         <classes>
 
@@ -16,14 +17,13 @@
             <class name="core.admin.tests.adminLoginPageTest"/>
         </classes>
     </test>
-
     <!--<test name="adminTest_Chrome">-->
         <!--<parameter name="browser" value="Chrome"/>-->
         <!--<classes>-->
 
-            <!--<class name="core.admin.tests.initTest"/>-->
+            <!--<class name="initTest"/>-->
 
-            <!--<class name="core.admin.tests.adminLoginPageTest"/>-->
+            <!--<class name="adminLoginPageTest"/>-->
         <!--</classes>-->
     <!--</test>-->
 </suite>
