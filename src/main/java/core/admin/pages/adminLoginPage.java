@@ -57,6 +57,9 @@ public class adminLoginPage extends basePage{
     public void verifyInvalidLoginErrorMsg(String username, String password){
 
         typeText(adminUsernameField,username);
+        js = (JavascriptExecutor)driver;
+        js.executeScript("document.getElementById('login_pass').focus();");
+        js.executeScript("document.getElementById('login_pass').click();");
         typeText(adminPasswordField,password);
         clickElement(adminSubmitBtn);
         new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOf(errorMsg));

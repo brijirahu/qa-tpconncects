@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.util.Random;
 
 public class commonMethods {
 
@@ -38,6 +39,22 @@ public class commonMethods {
             return prop;
         }
 
+
+    }
+
+
+    public String randomAgencyName(){
+
+        String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random rd = new Random();
+        StringBuilder sb = new StringBuilder();
+        while(sb.length() < 5){
+
+            int index = (int) (rd.nextFloat() * AB.length());
+            sb.append(AB.charAt(index));
+        }
+
+        return sb.toString();
 
     }
 

@@ -6,8 +6,7 @@ import core.admin.utility.commonMethods;
 import io.qameta.allure.Epic;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.Properties;
 
@@ -21,11 +20,13 @@ public class adminHomePageTest extends initTest {
     public final Logger logger = Logger.getLogger("logger");
     commonMethods commonMethods = new commonMethods();
 
-    //Creating the JavascriptExecutor interface object by Type casting
-    JavascriptExecutor js = (JavascriptExecutor)driver;
+    @BeforeTest
+    public void initPage(){
+        adminHomePage = new adminHomePage(driver);
+    }
 
 
-    @Test(description = "verify homepage elements")
+    @Test(description = "verify homepage elements" , priority = 0)
     public void verifyHomePageElements(){
         adminHomePage.bookingTripId.isDisplayed();
         adminHomePage.createNewAgentLink.isDisplayed();
@@ -36,7 +37,7 @@ public class adminHomePageTest extends initTest {
 
     }
 
-    @Test(description = "click on create new agent")
+    @Test(description = "click on create new agent", priority = 1)
     public void clickCreateAgency(){
         adminHomePage.custClicksCreateNewAgent();
 

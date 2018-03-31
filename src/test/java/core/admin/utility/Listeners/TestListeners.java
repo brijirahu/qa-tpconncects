@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-//import ru.yandex.qatools.allure.annotations.Attachment;
 
 public class TestListeners extends initTest implements ITestListener{
 
@@ -17,7 +16,7 @@ public class TestListeners extends initTest implements ITestListener{
     }
 
     //Image Attachments for Allure
-    @Attachment(value = "Save image screenshot" , type = "image/png")
+    @Attachment(value = "Page screenshot" , type = "image/png")
     public byte[] saveScreenshotPNG(WebDriver driver){
         return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
     }
@@ -28,9 +27,16 @@ public class TestListeners extends initTest implements ITestListener{
         return message;
     }
 
+    //HTML attachments for Allure
+    @Attachment(value = "{0}", type = "text/html")
+    public static String attachHtml(String html) {
+        return html;
+    }
+
     @Override
     public void onStart(ITestContext iTestContext) {
-        System.out.println("I am in onStart method " + iTestContext.getName());
+
+        System.out.println(" onStart method " + iTestContext.getName());
         iTestContext.setAttribute("WebDriver", this.driver);
     }
 
@@ -58,6 +64,7 @@ public class TestListeners extends initTest implements ITestListener{
     @Override
     public void onTestFailure(ITestResult iTestResult){
         System.out.println(" onTestFailure method  " + getTestMethodName(iTestResult) +  "failed");
+
         Object testClass = iTestResult.getInstance();
         WebDriver driver = ((initTest)testClass).getDriver();
 
@@ -67,7 +74,8 @@ public class TestListeners extends initTest implements ITestListener{
             System.out.println("Screenshot captured for test case: "+ getTestMethodName(iTestResult));
             saveScreenshotPNG(driver);
         }
-        saveTextLog(getTestMethodName(iTestResult) + "failed and screenshot taken!");
+        attachHtml(getTestMethodName(iTestResult) + "html ");
+        saveTextLog(getTestMethodName(iTestResult) + "failed and screenshot taken! ");
     }
 
 
