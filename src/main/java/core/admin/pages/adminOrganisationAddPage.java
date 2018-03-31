@@ -1,17 +1,22 @@
 package core.admin.pages;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
+import java.security.SecureRandom;
 import java.util.Properties;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class adminOrganisationAddPage extends basePage{
 
     WebDriver driver;
     Logger logger = Logger.getLogger(adminOrganisationAddPage.class);
+
+    static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     @FindBy(xpath = "//input[@id='agent_name']")
     public WebElement agencyNameField;
@@ -22,17 +27,23 @@ public class adminOrganisationAddPage extends basePage{
     @FindBy(xpath = "//input[@id='contactnumber']")
     public WebElement agencyContactNoField;
 
-    @FindBy(xpath = "///input[@id='credit_limit']")
+    @FindBy(xpath = "//input[@id='credit_limit']")
     public WebElement agencyCreditLimitField;
 
     @FindBy(xpath = "//select[@id='payment_gateway']")
     public WebElement agencyPGSelect;
 
-    @FindBy(xpath = "//a[contains(.,'UAE Dirham')]")
+    @FindBy(xpath = ".//a[contains(.,'UAE Dirham')]")
     public WebElement agencyDefaultCurrency;
 
     @FindBy(xpath = "(.//*[@id='contactnumber_chosen']/a/span[contains(.,'India')])[1]")
     public WebElement agencyOperatingCountrySelect;
+
+    @FindBy(xpath = "(.//span[contains(. , 'India')])[1]/../..//div[@class = 'chosen-search']/input")
+    public WebElement agencyOperatingCountryTxt;
+
+    @FindBy(xpath = ".//*[@id='contactnumber_chosen']/div/ul/li/em")
+    public WebElement dropDownResult;
 
     @FindBy(xpath = ".//*[@id='contactnumber_chosen']/a/span[contains(.,'Dubai')]")
     public WebElement agencyTimeZone;
@@ -52,14 +63,21 @@ public class adminOrganisationAddPage extends basePage{
     @FindBy(xpath = ".//*[@id='city_chosen']/a")
     public WebElement agencyConatctCity;
 
+    @FindBy(xpath = ".//*[@id='city_chosen']//div[@class='chosen-search']")
+    public WebElement agencyContactCityTxt;
+
     @FindBy (xpath = ".//*[@id='state_province']")
     public WebElement agencyContactStateField;
 
     @FindBy(xpath = "//input[@id='zip']")
     public WebElement agencyContactZipField;
 
-    @FindBy(xpath = "(.//*[@id='contactnumber_chosen']/a/span[contains(.,'India')])[2]")
+//    @FindBy(xpath = "(.//*[@id='contactnumber_chosen']/a/span[contains(.,'India')])[2]")
+    @FindBy(xpath = "(.//*[@id='contactnumber_chosen']/a)[4]")
     public WebElement agencyContactCountry;
+
+    @FindBy(xpath = "(.//span[contains(. , 'India')])[2]/../..//div[@class = 'chosen-search']/input")
+    public WebElement agencyCountryTxt;
 
     @FindBy(xpath = "//input[@id='flight_stats']")
     public WebElement agencyFlightStats;
@@ -113,7 +131,8 @@ public class adminOrganisationAddPage extends basePage{
     @FindBy(xpath = ".//*[@id='about']")
     public WebElement companyInformation;
 
-
+    @FindBy(xpath = ".//button[@class = 'btn btn-success']")
+    public WebElement saveButton;
 
 
     public adminOrganisationAddPage(WebDriver driver) {
@@ -169,13 +188,55 @@ public class adminOrganisationAddPage extends basePage{
 
     public void validInputAgentCreation(Properties prop){
 
-        typeText(agencyNameField, prop.getProperty("validAgencyName"));
+        waitForElement(agencyNameField);
+
+        typeText(agencyNameField, randomAgencyName());
         typeText(agencyEmailField, prop.getProperty("validAgencyEmail"));
         typeText(agencyContactNoField,prop.getProperty("validAgencyContact"));
         typeText(agencyCreditLimitField,prop.getProperty("validAgencyCreditLimit"));
-        //typeText(agencyContactPersonName, prop.getProperty());
+
+        //operating country
+        clickElement(agencyOperatingCountrySelect);
+        agencyOperatingCountryTxt.sendKeys(prop.getProperty("validAgencyCountry"));
+        clickElement(dropDownResult);
+
+        typeText(agencyContactPersonName,prop.getProperty("validAgenyPersonName"));
+        typeText(agencyContactPersonNoField,prop.getProperty("validAgencyPersonContact"));
+        typeText(agencyContactEmailField,prop.getProperty("validAgencyPersonEmail"));
+        typeText(agencyContactAddress1, prop.getProperty("validAgencyAddress1"));
+
+//        clickElement(agencyConatctCity);
+//        agencyContactCityTxt.sendKeys(prop.getProperty("validAgencyCity") + Keys.TAB);
+
+//        typeText(agencyContactStateField, prop.getProperty("validAgencyState"));
+//        typeText(agencyContactZipField, prop.getProperty("validAgencyZip"));
+
+//        JavascriptExecutor js = (JavascriptExecutor)driver;
+//        js.executeScript("arguments[0].click();",agencyContactCountry );
+////        agencyContactCountry.click();
+//        agencyCountryTxt.sendKeys(prop.getProperty("validAgencyPersonCountry"), Keys.TAB);
+        clickElement(saveButton);
+        driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
+        waitForElement(driver.findElement(By.id("firstname")));
 
 
+
+
+
+    }
+
+    public String randomAgencyName(){
+
+        Random rd = new Random();
+        StringBuilder sb = new StringBuilder();
+        while(sb.length() < 5){
+
+            int index = (int) (rd.nextFloat() * AB.length());
+            sb.append(AB.charAt(index));
+        }
+
+        String str = "Auto" + sb.toString() + " Agency";
+        return str;
 
     }
 

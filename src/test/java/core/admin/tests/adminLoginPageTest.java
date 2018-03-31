@@ -25,16 +25,15 @@ public class adminLoginPageTest extends initTest  {
     commonMethods commonMethods = new commonMethods();
     Properties prop;
 
-    @Parameters("browser")
-    @BeforeClass
-    public void initSetup(String browser) {
-        initDriver(browser);
+    @BeforeTest
+    public void initUrl(){
         openUrl(url);
-        logger.info("****Inside adminLoginPageTest beforeClass*****");
+        logger.info("**** Inside adminLoginPageTest beforeTest *****");
         logger.info(getDriver().getWindowHandle());
         adminLoginPage = new adminLoginPage(getDriver());
-
     }
+
+
 
     @Step("Verify admin login page url step..")
     @Test(description = "Verify login page url")
@@ -71,11 +70,6 @@ public class adminLoginPageTest extends initTest  {
         adminLoginPage.verifyvalidLogin(username,password);
     }
 
-    @AfterSuite
-    public void closeDriver(){
-       quitDriver();
-
-    }
 
 
 

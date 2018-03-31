@@ -1,29 +1,45 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="tpconnects">
+    <parameter name="browser" value="Firefox"/>
 
     <listeners>
-        <!--<listener class-name="ScreenshotListener" />-->
         <listener class-name="core.admin.utility.Listeners.TestListeners" />
-        <!--<listener class-name="org.uncommons.reportng.HTMLReporter"/>-->
-        <!--<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>-->
     </listeners>
 
-    <test name="adminTest_FF" preserve-order="true">
+    <test name="adminTest_Agent" enabled="false">
+        <parameter name="browser" value="Firefox"/>
+        <classes>
+
+            <class name="core.admin.tests.adminLoginPageTest"/>
+
+            <class name="core.admin.tests.adminHomePageTest"/>
+
+            <class name="core.admin.tests.adminOrganisationAddPageTest"/>
+
+            <class name="core.admin.tests.adminCreateSubAgentPageTest"/>
+
+            <class name="core.admin.tests.adminAgentSaleConfigPageTest"/>
+
+            <class name="core.admin.tests.initTest"/>
+
+        </classes>
+    </test>
+    <test name="adminTest_Search">
         <parameter name="browser" value="Firefox"/>
         <classes>
 
             <class name="core.admin.tests.initTest"/>
 
-            <class name="core.admin.tests.adminLoginPageTest"/>
+            <class name="core.admin.tests.adminSearchPageTest"/>
+
+            <!--<class name="core.admin.tests.adminSaleConfigPageTest"/>-->
+
+            <class name="core.admin.tests.adminSearchCarPageTest"/>
+
+            <!--<class name="core.admin.tests.adminSearchHotelPageTest"/>-->
+
+            <!--<class name="core.admin.tests.adminCarBlockPageTest"/>-->
+
         </classes>
     </test>
-    <!--<test name="adminTest_Chrome">-->
-        <!--<parameter name="browser" value="Chrome"/>-->
-        <!--<classes>-->
-
-            <!--<class name="initTest"/>-->
-
-            <!--<class name="adminLoginPageTest"/>-->
-        <!--</classes>-->
-    <!--</test>-->
 </suite>
